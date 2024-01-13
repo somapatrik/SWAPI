@@ -18,6 +18,8 @@
                FontAttributes="Bold"
                HorizontalTextAlignment="Center"/>
 
+        
+
         <VerticalStackLayout Grid.Row="2">
             
             

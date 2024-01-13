@@ -5,8 +5,6 @@ VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SWAPI", "SWAPI\SWAPI.csproj", "{8061D133-E4F8-4C07-9836-1D594E7FE743}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SWAPI.API", "SWAPI.API\SWAPI.API.csproj", "{40DBA351-C24E-4C8F-9C35-A44A213B7005}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,10 +17,6 @@ Global
 		{8061D133-E4F8-4C07-9836-1D594E7FE743}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8061D133-E4F8-4C07-9836-1D594E7FE743}.Release|Any CPU.Build.0 = Release|Any CPU
 		{8061D133-E4F8-4C07-9836-1D594E7FE743}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{40DBA351-C24E-4C8F-9C35-A44A213B7005}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{40DBA351-C24E-4C8F-9C35-A44A213B7005}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{40DBA351-C24E-4C8F-9C35-A44A213B7005}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{40DBA351-C24E-4C8F-9C35-A44A213B7005}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
