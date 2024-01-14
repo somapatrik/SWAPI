@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using SWAPI.Messages;
 using SWAPI.Models;
 using SWAPI.Services;
 using SWAPI.Views;
@@ -36,6 +38,9 @@ namespace SWAPI.ViewModels
         public ICommand DisplayPage { get; private set; }
         public ICommand SearchPlanet { get; private set; }
         public ICommand DisplayPlanet { get; private set; }
+        public ICommand SyncApi { get; private set; }
+
+        public ICommand AddPlanet { get; private set; }
 
         public MainViewModel() 
         {
@@ -45,9 +50,8 @@ namespace SWAPI.ViewModels
         private void Init()
         {
             Preload();
-            _SelectedPage = 1;
-
             RelayCommands();
+            WeakReferenceMessenger.Default.Register<CreatePlanetMessage>(this, (a, b) => { AddPlanetToList(b.Value); });
         }
 
         private void RelayCommands()
@@ -56,6 +60,19 @@ namespace SWAPI.ViewModels
             DisplayPage = new Command(async()=>await DisplayPageHandler());
             SearchPlanet = new Command(FilterHandler);
             DisplayPlanet = new Command(DisplayPlanetHandler);
+            SyncApi = new Command(SyncHandler);
+            AddPlanet = new Command(AddPlanetHandler);
+        }
+
+        private async void AddPlanetHandler(object obj)
+        {
+            await Shell.Current.Navigation.PushModalAsync(new CreateView());
+        }
+
+        private void AddPlanetToList(Planet planet)
+        {
+            PlanetService.AllPlanets.Add(planet);
+            FilterHandler();
         }
 
         private async void DisplayPlanetHandler(object planet)
@@ -65,20 +82,26 @@ namespace SWAPI.ViewModels
 
         private void FilterHandler()
         {
-            SelectedPage = 1;
             if (string.IsNullOrEmpty(SearchName))
                 _AllPlanets = PlanetService.AllPlanets;
             else
                 _AllPlanets = PlanetService.AllPlanets.Where(x => x.Name.ToLower().Contains(SearchName.ToLower().Trim())).ToList();
 
-
             LoadPlanets();
+        }
+
+        private async void SyncHandler()
+        {
+            SearchName = "";
+            Planets = new ObservableCollection<Planet>();
+            await Task.Run(()=>Preload());
         }
 
         private async void Preload()
         {
             IsLoading = true;
-            await PlanetService.PreLoadAllPlanets();
+
+            await SyncData();
 
             _AllPlanets = new List<Planet>();
             _AllPlanets = PlanetService.AllPlanets;
@@ -86,13 +109,9 @@ namespace SWAPI.ViewModels
             LoadPlanets();
         }
 
-        private async Task DisplayPageHandler()
+        private async Task SyncData()
         {
-            Planets = new ObservableCollection<Planet>();
-            IEnumerable<Planet> p;
-            p = _AllPlanets.Skip((_SelectedPage - 1) * _MaxPerPage).Take(_MaxPerPage);
-
-            p.ToList().ForEach(planet => Planets.Add(planet));
+            await PlanetService.PreLoadAllPlanets();
         }
 
         private async void LoadPlanets()
@@ -105,8 +124,18 @@ namespace SWAPI.ViewModels
             IsLoading = false;
         }
 
+        private async Task DisplayPageHandler()
+        {
+            Planets = new ObservableCollection<Planet>();
+            IEnumerable<Planet> p;
+            p = _AllPlanets.Skip((_SelectedPage - 1) * _MaxPerPage).Take(_MaxPerPage).OrderBy(p=>p.Name);
+
+            p.ToList().ForEach(planet => Planets.Add(planet));
+        }
+
         private async Task SetPages()
         {
+            SelectedPage = 1;
             Pages = new List<int>();
             int pagesCount = (int)Math.Ceiling((decimal)_AllPlanets.Count() / _MaxPerPage);
 

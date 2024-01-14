@@ -15,7 +15,7 @@ namespace SWAPI.Models
         public List<string> Films { get; set; }
         public string Gravity { get; set; }
         public string Name { get; set; }
-        public string OrbitalPeriod { get; set; }
+        public string Orbital_Period { get; set; }
         public string Population { get; set; }
         public List<string> Residents { get; set; }
         public string RotationPeriod { get; set; }

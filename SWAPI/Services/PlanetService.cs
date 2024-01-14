@@ -28,7 +28,7 @@ namespace SWAPI.Services
                 Films = p.Films,
                 Gravity = p.Gravity,
                 Name = p.Name,
-                OrbitalPeriod = p.OrbitalPeriod,
+                OrbitalPeriod = p.Orbital_Period,
                 Population = p.Population,
                 Residents = p.Residents,
                 RotationPeriod = p.RotationPeriod,
