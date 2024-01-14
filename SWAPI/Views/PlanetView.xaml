@@ -5,22 +5,40 @@
              Title="PlanetView">
 
     <StackLayout>
-        <Label Text="{Binding Planet.Name}" FontAttributes="Bold" />
+        
+        <Label Text="{Binding Planet.Name}" 
+               FontAttributes="Bold"
+               FontSize="Title"
+               HorizontalTextAlignment="Center"
+               Margin="20"/>
 
-        <StackLayout>
-            <Label Text="Climate" />
-            <Label Text="{Binding Planet.Climate}" />
+        <Grid Padding="10" RowSpacing="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
 
-            <Label Text="Diameter" />
-            <Label Text="{Binding Planet.Diameter}" />
+            <Label Text="Climate" FontAttributes="Bold"/>
+            <Label Grid.Column="1" Text="{Binding Planet.Climate}" HorizontalOptions="End" />
 
-            <Label Text="Gravity" />
-            <Label Text="{Binding Planet.Gravity}" />
+            <Label Grid.Row="1" Text="Diameter" FontAttributes="Bold"/>
+            <Label Grid.Row="1" Grid.Column="1" Text="{Binding Planet.Diameter}" HorizontalTextAlignment="End" />
 
-            <Label Text="Orbital Period" />
-            <Label Text="{Binding Planet.OrbitalPeriod}" />
+            <Label Grid.Row="2" Text="Gravity" FontAttributes="Bold"/>
+            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Planet.Gravity}" HorizontalTextAlignment="End"/>
 
-        </StackLayout>
+            <Label Grid.Row="3" Text="Orbital Period" FontAttributes="Bold"/>
+            <Label Grid.Row="3" Grid.Column="1" Text="{Binding Planet.OrbitalPeriod}" HorizontalTextAlignment="End" />
+
+        </Grid>
 
     </StackLayout>
 
