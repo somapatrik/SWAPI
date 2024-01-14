@@ -3,10 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="SWAPI.Views.CreateView"
              Title="CreateView">
-    <VerticalStackLayout Spacing="5" Padding="10" VerticalOptions="Center">
-        <Entry Placeholder="Planet´s name" Text="{Binding Name}"/>
-        <Entry Placeholder="Terrain" Text="{Binding Terain}"/>
-        <Entry Placeholder="Population" Keyboard="Numeric"  Text="{Binding Population}"/>
+    
+    <VerticalStackLayout Spacing="5" Padding="10" VerticalOptions="Center" >
+        <Entry Placeholder="Planet´s name" Text="{Binding Name}" HorizontalTextAlignment="Center"/>
+        <Entry Placeholder="Terrain" Text="{Binding Terrain}" HorizontalTextAlignment="Center"/>
+        <Entry Placeholder="Population" Keyboard="Numeric"  Text="{Binding Population}" HorizontalTextAlignment="Center"/>
             <Button Text="Create planet" Command="{Binding CreatePlanet}"/>
     </VerticalStackLayout>
 </ContentPage>
