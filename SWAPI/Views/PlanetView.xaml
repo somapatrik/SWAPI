@@ -38,6 +38,12 @@
             <Label Grid.Row="3" Text="Orbital Period" FontAttributes="Bold"/>
             <Label Grid.Row="3" Grid.Column="1" Text="{Binding Planet.OrbitalPeriod}" HorizontalTextAlignment="End" />
 
+            <Label Grid.Row="4" Text="Population" FontAttributes="Bold"/>
+            <Label Grid.Row="4" Grid.Column="1" Text="{Binding Planet.Population}" HorizontalTextAlignment="End" />
+
+            <Label Grid.Row="5" Text="Terrain" FontAttributes="Bold"/>
+            <Label Grid.Row="5" Grid.Column="1" Text="{Binding Planet.Terrain}" HorizontalTextAlignment="End" />
+
         </Grid>
 
     </StackLayout>
