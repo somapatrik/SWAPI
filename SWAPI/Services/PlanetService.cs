@@ -6,6 +6,15 @@ namespace SWAPI.Services
 {
     public static class PlanetService
     {
+
+        public static List<Planet> AllPlanets;
+
+        public static async Task PreLoadAllPlanets()
+        {
+            AllPlanets = new List<Planet>();
+            AllPlanets = await GetAllPlanets();
+        }
+
         public static async Task<List<Planet>> GetAllPlanets()
         {
             var apiService = new ApiService();
