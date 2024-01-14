@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:model="clr-namespace:SWAPI.Models"
+             xmlns:vm="clr-namespace:SWAPI.ViewModels"
              x:Class="SWAPI.MainPage"
              Shell.NavBarIsVisible="False">
 
@@ -10,6 +11,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
+
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
@@ -35,6 +38,11 @@
                     <DataTemplate x:DataType="model:Planet">
                         
                         <Border Padding="5" Margin="5">
+
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding DisplayPlanet,Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}}" 
+                                                      CommandParameter="{Binding .}"/>
+                            </Border.GestureRecognizers>
                             
                             <Border.StrokeShape>
                                 <RoundRectangle CornerRadius="7"/>
@@ -52,11 +60,43 @@
 
             </CollectionView>
         </RefreshView>
-        
-        
-        
 
-        <VerticalStackLayout Grid.Row="2">
+
+        <CollectionView Grid.Row="2" 
+                        HorizontalOptions="Center" 
+                        Margin="0,10,0,10"
+                        ItemsSource="{Binding Pages}" 
+                        SelectedItem="{Binding SelectedPage}" 
+                        SelectionChangedCommand="{Binding DisplayPage}"
+                        SelectionMode="Single">
+
+            <CollectionView.ItemsLayout>
+
+                <LinearItemsLayout Orientation="Horizontal"/>
+
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+
+                    <Border Padding="5" Margin="5">
+
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="7"/>
+                        </Border.StrokeShape>
+
+                        <StackLayout>
+                            <Label Text="{Binding .}"/>
+                        </StackLayout>
+
+                    </Border>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+        <VerticalStackLayout Grid.Row="3">
             
             <Grid Padding="5">
                 <Grid.ColumnDefinitions>

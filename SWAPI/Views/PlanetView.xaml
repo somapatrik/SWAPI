@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="SWAPI.Views.PlanetView"
+             Title="PlanetView">
+
+    <StackLayout>
+        <Label Text="{Binding Planet.Name}" FontAttributes="Bold" />
+
+        <StackLayout>
+            <Label Text="Climate" />
+            <Label Text="{Binding Planet.Climate}" />
+
+            <Label Text="Diameter" />
+            <Label Text="{Binding Planet.Diameter}" />
+
+            <Label Text="Gravity" />
+            <Label Text="{Binding Planet.Gravity}" />
+
+            <Label Text="Orbital Period" />
+            <Label Text="{Binding Planet.OrbitalPeriod}" />
+
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>
